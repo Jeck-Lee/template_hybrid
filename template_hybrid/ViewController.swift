@@ -92,37 +92,45 @@ extension ViewController: WKUIDelegate {
 	
 	// alert창에서 확인만 필요할 때
 	func webView(_ webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping () -> Void) {
-		let alert = UIAlertController(title: "", message: message, preferredStyle: .alert)
-		let okAction = UIAlertAction(title: "확인", style: .default) { (action) in
+		let alertController = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+		alertController.addAction(UIAlertAction(title: "확인", style: .default) { _ in
 			completionHandler()
-		}
-		alert.addAction(okAction)
+		})
+		self.present(alertController, animated: true, completion: nil)
 	}
 	
 	// alert창에서 확인과 취소가 필요할 때
 	func webView(_ webView: WKWebView, runJavaScriptConfirmPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping (Bool) -> Void) {
-		let alert = UIAlertController(title: "", message: message, preferredStyle: .alert)
-		let okAction = UIAlertAction(title: "확인", style: .default) { (action) in
+		let alertController = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+		alertController.addAction(UIAlertAction(title: "확인", style: .default) { _ in
 			completionHandler(true)
-		}
-		let cancelAction = UIAlertAction(title: "취소", style: .default) { (action) in
+		})
+		alertController.addAction(UIAlertAction(title: "취소", style: .default) { _ in
 			completionHandler(false)
-		}
-		alert.addAction(okAction)
-		alert.addAction(cancelAction)
+		})
+		self.present(alertController, animated: true, completion: nil)
 	}
 	
 	// alert창에서 text를 입력해야 할 때
 	func webView(_ webView: WKWebView, runJavaScriptTextInputPanelWithPrompt prompt: String, defaultText: String?, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping (String?) -> Void) {
-		let alert = UIAlertController(title: "", message: prompt, preferredStyle: .alert)
-		let okAction = UIAlertAction(title: "확인", style: .default) { (action) in
-			if let text = alert.textFields?.first?.text {
-				completionHandler(text)
-			} else {
-				completionHandler(defaultText)
-			}
+		let alertController = UIAlertController(title: nil, message: prompt, preferredStyle: .alert)
+		
+		// 텍스트 필드를 추가하고, defaultText로 기본값을 설정
+		alertController.addTextField { textField in
+			textField.text = defaultText
 		}
-		alert.addAction(okAction)
+		
+		let confirmAction = UIAlertAction(title: "확인", style: .default) { _ in
+			let userInput = alertController.textFields?.first?.text
+			completionHandler(userInput)
+		}
+		alertController.addAction(confirmAction)
+		let cancelAction = UIAlertAction(title: "취소", style: .cancel) { _ in
+			completionHandler(nil)
+		}
+		alertController.addAction(cancelAction)
+		
+		self.present(alertController, animated: true, completion: nil)
 	}
 }
 //---------------------------------------------------------------------------------
