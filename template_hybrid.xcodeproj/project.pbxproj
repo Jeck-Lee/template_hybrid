@@ -310,6 +310,8 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = template_hybrid/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "카메라 권한이 필요하다면 입력해주세요.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "사진 앨범 권한이 필요하다면 입력해주세요";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -337,6 +339,8 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = template_hybrid/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "카메라 권한이 필요하다면 입력해주세요.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "사진 앨범 권한이 필요하다면 입력해주세요";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
